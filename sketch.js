@@ -1,12 +1,13 @@
-var screen = 0;
-var y=-40;
-var x=200;
-
-var speed = 2;
-var score= 0;
+let screen = 0;
+let y=-20;
+let x=200
+let e1;
+let speed = 0.2;
+let score= 0;
 
 function setup() {
   createCanvas(600, 400);
+  e=new Enemy()
  
 }
 
@@ -40,10 +41,11 @@ function startScreen(){
 function gameOn(){
 	background(102,102,255)
   text("score = " + score, 30,20)
-  
+  fill(255,0,255)
   ellipse(x,y,20,20)
   
   rectMode(CENTER)
+  fill(255,255,255)
   rect(mouseX,height-10,50,30)
 	y+= speed;
 	
@@ -51,13 +53,24 @@ function gameOn(){
   	screen =2
 	 }
   if(y>height-10 && x>mouseX-20 && x<mouseX+20){
-  	y=-20
-    speed+=.5
+	console.log(x)
+
+	console.log(y)
+
+    speed+=.1
     score+= 1
+	console.log('good')
 	
-	
-	if(y==-20){
-  	pickRandom();
+	e1=e.show(speed,score)
+	console.log(e1)
+	if(e1==true)
+	{
+		score-=1
+		screen =2
+	}
+	y=-20
+	 if(y==-20){
+  	 pickRandom();
   		      }
 	
  	}
